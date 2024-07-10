@@ -10,4 +10,4 @@ jobs:
 
   call:
     needs: build
-    uses: ./.github/workflows/deploy.yml
+    uses: "./.github/workflows/deploy.yml"
