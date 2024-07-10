@@ -4,19 +4,23 @@ on:
   workflow_call:
     inputs:
       caller-path:
-        description: "Path to the caller workflow"
         required: true
         type: string
 
 jobs:
-  called-workflow:
-    name: Print caller-path
+  called-job:
     runs-on: ubuntu-latest
-
+    outputs:
+      called-output: ${{ steps.process.outputs.result }}
     steps:
-      - name: Checkout repository
-        uses: actions/checkout@v2
-
-      - name: Print caller-path
+      - name: Process input
+        id: process
         run: |
-          echo "Caller path is ${{ inputs.caller-path }}"
+          echo "Processing caller path: ${{ inputs.caller-path }}"
+          # 여기서 실제 작업을 수행하고 처리 결과를 출력합니다.
+          echo "::set-output name=result::Processed result"
+
+      - name: Provide output
+        run: |
+          # 여기서 추가적인 작업이 가능합니다.
+          echo "::set-output name=called-output::Output for caller workflow"
