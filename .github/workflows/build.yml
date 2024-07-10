@@ -6,8 +6,8 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - run: echo "build 🛠️"
+      - name: Print message
+        run: echo "build 🛠️"
 
-  call:
-    needs: build
-    uses: "./.github/workflows/deploy.yml"
+      - name: Deploy
+        uses: ./.github/workflows/deploy.yml
