@@ -1,4 +1,4 @@
-name: caller-workflows
+name: caller
 
 on:
   push:
@@ -13,6 +13,6 @@ jobs:
         uses: actions/checkout@v2
 
       - name: Call reusable workflow
-        uses: ./.github/workflows/called-workflows.yml@main
+        uses: ./.github/workflows/called.yml
         with:
           caller-path: "path/to/caller"

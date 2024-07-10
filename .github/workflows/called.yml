@@ -1,4 +1,4 @@
-name: called-workflows
+name: called
 
 on:
   workflow_call:
