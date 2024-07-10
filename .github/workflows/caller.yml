@@ -12,7 +12,17 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v2
 
-      - name: Call reusable workflow
-        uses: ./.github/workflows/called.yml
-        with:
-          caller-path: "path/to/caller"
+      - name: Find and print called.yml path
+        id: find-path
+        run: |
+          called_path=$(find $GITHUB_WORKSPACE -name "called.yml")
+          echo "called_path=$called_path" >> $GITHUB_ENV
+          if [ -z "$called_path" ]; then
+            echo "called.yml not found"
+            exit 1
+          else
+            echo "called.yml found at: $called_path"
+          fi
+
+      - name: Print the found path
+        run: echo "The path to called.yml is ${{ env.called_path }}"
