@@ -9,4 +9,5 @@ jobs:
       - run: echo "build 🛠️"
 
   call:
+    needs: build
     uses: ./.github/workflows/deploy.yml
