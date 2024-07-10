@@ -1,5 +1,4 @@
 name: Build
-run-name: 🛠️ Build actions...
 on:
   workflow_dispatch:
 
@@ -7,4 +6,7 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - run: echo "build..."
+      - run: echo "build 🛠️"
+
+  call:
+    uses: ./.github/workflows/build.yml
