@@ -1,8 +1,7 @@
 name: 워크플로 변수와 컨텍스트
 
 on:
-  push:
-    branches: [main]
+  workflow_call:
 
 jobs:
   use_variable_context:
