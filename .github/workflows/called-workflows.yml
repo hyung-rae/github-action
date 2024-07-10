@@ -1,0 +1,15 @@
+name: called-workflows
+
+on:
+  workflow_call:
+    inputs:
+      caller-path:
+        required: true
+        type: string
+
+jobs:
+  called-workflow:
+    runs-on: ubuntu-latest
+    steps:
+      - name: "caller : ${{ inputs.caller-path }}"
+        run: echo "${{ inputs.caller-path }}!"

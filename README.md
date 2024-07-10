@@ -46,10 +46,42 @@
 - 대신 재사용 가능한 워크플로의 출력을 사용해야 함
 
 ```YAML
+# 호출될 워크플로
+name: called-workflows
+
+# 트리거 조건 / 워크플로 호출
 on:
   workflow_call:
+    # 호출자 워크플로에서 받을 값들
+    inputs:
+      caller-name:
+        required: true
+        type: string
+
 ```
-- 워크플로를 다시 사용하려면 다음 on 값이 workflow_call을 포함
+```YAML
+# 호출자 워크플로
+name: caller-workflows
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  call-workflow:
+    runs-on: ubuntu-latest
+
+    steps:
+      # 워크플로 호출
+      - name: Call Workflow
+        # 호출할 워크플로 path
+        uses: ./.github/workflows/called-workflows.yml
+        # 필요한 입력값 전달
+        with:
+          caller-name: 'caller-workflows'    
+
+```
 
 ## Events
 - 워크플로 실행을 트리거하는 활동

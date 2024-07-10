@@ -1,0 +1,14 @@
+name: caller-workflows
+
+on:
+  push:
+    branches: [main]
+
+jobs:
+  caller-workflow:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Call workflow
+        uses: ./.github/workflows/called-workflows.yml
+        with:
+          caller-path: ${{ github.event_path}}
