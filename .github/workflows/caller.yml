@@ -6,6 +6,9 @@ on:
 
 jobs:
   caller-workflow:
-    uses: ./.github/workflows/caller.yml@main
-    with:
-      caller-path: ./caller
+    runs-on: ubuntu-latest
+    steps:
+      - name: Trigger called workflow
+        uses: ./.github/workflows/called.yml
+        with:
+          caller-path: "./caller"
