@@ -14,5 +14,5 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v2
 
-      - name: "caller : ${{ inputs.caller-path }}"
+      - name: Print caller-path
         run: echo "${{ inputs.caller-path }}!"

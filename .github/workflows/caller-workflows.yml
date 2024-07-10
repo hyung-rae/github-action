@@ -12,5 +12,7 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v2
 
-      - name: Call workflow
+      - name: Call reusable workflow
         uses: ./.github/workflows/called-workflows.yml
+        with:
+          caller-path: "path/to/caller"
