@@ -1,20 +1,17 @@
-name: 워크플로 변수 사용
+name: 워크플로 변수와 컨텍스트
 
 on:
-  pull_request:
-    branches:
-      - "main"
-
-env:
-  DAY_OF_WEEK: Monday
+  push:
+    branches: [main]
 
 jobs:
-  greeting_job:
+  use_variable_context:
     runs-on: ubuntu-latest
     env:
       Greeting: Hello
     steps:
       - name: "Say Hello Mona it's Monday"
+        if: ${{ github.head_ref == 'main' }}
         run: echo "$Greeting $First_Name. Today is $DAY_OF_WEEK!"
         env:
           First_Name: Mona
