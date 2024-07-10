@@ -6,28 +6,6 @@ on:
 
 jobs:
   caller-workflow:
-    runs-on: ubuntu-latest
-
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v2
-
-      - name: Find and print called.yml path
-        id: find-path
-        run: |
-          called_path=$(find $GITHUB_WORKSPACE -name "called.yml")
-          echo "called_path=$called_path" >> $GITHUB_ENV
-          if [ -z "$called_path" ]; then
-            echo "called.yml not found"
-            exit 1
-          else
-            echo "called.yml found at: $called_path"
-          fi
-
-      - name: Print the found path
-        run: echo "The path to called.yml is ${{ env.called_path }}"
-
-      - name: Call reusable workflow
-        uses: ./.github/workflows/called.yml
-        with:
-          caller-path: "path/to/caller"
+    uses: ./.github/workflows/caller.yml@main
+    with:
+      caller-path: ./caller

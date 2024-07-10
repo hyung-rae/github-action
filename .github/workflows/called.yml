@@ -4,15 +4,19 @@ on:
   workflow_call:
     inputs:
       caller-path:
+        description: "Path to the caller workflow"
         required: true
         type: string
 
 jobs:
   called-workflow:
+    name: Print caller-path
     runs-on: ubuntu-latest
+
     steps:
-      - name: Checkout code
+      - name: Checkout repository
         uses: actions/checkout@v2
 
       - name: Print caller-path
-        run: echo "${{ inputs.caller-path }}!"
+        run: |
+          echo "Caller path is ${{ inputs.caller-path }}"
