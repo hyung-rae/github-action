@@ -13,6 +13,6 @@ jobs:
         uses: actions/checkout@v2
 
       - name: Call workflow
-        uses: ./called-workflows.yml
+        uses: .github/workflows/called-workflows.yml
         with:
           caller-path: ${{ github.event_path}}
