@@ -13,6 +13,9 @@ jobs:
     outputs:
       called-output: ${{ steps.process.outputs.result }}
     steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2 # actions/checkout 액션 추가
+
       - name: Process input
         id: process
         run: |
