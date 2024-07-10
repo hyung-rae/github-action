@@ -26,3 +26,8 @@ jobs:
 
       - name: Print the found path
         run: echo "The path to called.yml is ${{ env.called_path }}"
+
+      - name: Call reusable workflow
+        uses: ./.github/workflows/called.yml
+        with:
+          caller-path: "path/to/caller"
