@@ -1,0 +1,23 @@
+name: Slack
+on:
+  workflow_call:
+    inputs:
+      status:
+        required: true
+        type: string
+    secrets:
+      SLACK_WEBHOOK_URL:
+        required: true
+
+jobs:
+  slack:
+    runs-on: ubuntu-latest
+    steps:
+      - name: slack
+        uses: 8398a7/action-slack@v3
+        with:
+          status: ${{ inputs.status }}
+          author_name: E2E Report
+          fields: repo,message,commit,author,action,eventName,ref,workflow,job,took
+        env:
+          SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}

@@ -1,6 +1,6 @@
 name: Main
 on:
-  push:
+  workflow_dispatch:
 
 permissions:
   id-token: write
@@ -8,8 +8,22 @@ permissions:
   actions: read
 
 jobs:
+  e2e-test:
+    uses: hyung-rae/end-to-end/github/workflows/e2e.yml@main
+
   build:
+    needs: e2e-test
     uses: ./.github/workflows/build.yml
 
   deploy:
+    needs: [e2e-test, build]
     uses: ./.github/workflows/deploy.yml
+
+  slack:
+    needs: e2e-test
+    if: always()
+    uses: ./.github/workflows/slack.yml
+    with:
+      status: ${{ needs.e2e-test.outputs.test_result }}
+    secrets:
+      SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
