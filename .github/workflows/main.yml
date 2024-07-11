@@ -9,7 +9,7 @@ permissions:
 
 jobs:
   e2e-test:
-    uses: hyung-rae/end-to-end/github/workflows/e2e.yml@main
+    uses: hyung-rae/end-to-end/.github/workflows/e2e.yml@main
 
   build:
     needs: e2e-test
