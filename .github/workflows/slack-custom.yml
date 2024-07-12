@@ -10,9 +10,8 @@ jobs:
         uses: 8398a7/action-slack@v3
         with:
           status: success
-          author_name: Qshop Admin E2E Test
-          text: E2E test 성공
-          icon_emoji: 🎉
+          author_name: 큐샵 어드민 E2E 테스트
+          text: 🎉 E2E test 성공
           fields: repo,message,author,ref
         env:
           SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
@@ -21,9 +20,8 @@ jobs:
         uses: 8398a7/action-slack@v3
         with:
           status: failure
-          author_name: Qshop Admin E2E Test
-          text: E2E test 실패
-          icon_emoji: ❌
+          author_name: 큐샵 어드민 E2E 테스트
+          text: ❌ E2E test 실패
           fields: repo,message,author,ref
         env:
           SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}        
@@ -32,9 +30,8 @@ jobs:
         uses: 8398a7/action-slack@v3
         with:
           status: cancelled
-          author_name: Qshop Admin E2E Test
-          text: E2E test 취소
-          icon_emoji: 😳
+          author_name: 큐샵 어드민 E2E 테스트
+          text: 😳 E2E test 취소
           fields: repo,message,author,ref
         env:
           SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}       
