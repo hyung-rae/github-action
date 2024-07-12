@@ -6,10 +6,13 @@ jobs:
   slack-message:
     runs-on: ubuntu-latest
     steps:
-       - uses: 8398a7/action-slack@v3
-         with:
-           status: failure
-           author_name: E2E Report
-           fields: repo,message,commit,author,action,eventName,ref,workflow,job,took
-         env:
-           SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
+      - name: success-message
+        uses: 8398a7/action-slack@v3
+        with:
+          status: success
+          author_name: Qshop Admin E2E Test
+          mention: here
+          text: e2e test 완료
+          fields: repo,message,author,ref
+        env:
+          SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
