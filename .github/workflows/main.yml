@@ -26,4 +26,4 @@ jobs:
     with:
       status: ${{ needs.e2e-test.outputs.test_result }}
     secrets:
-      SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
+      web_hook_url: ${{ secrets.SLACK_WEBHOOK_URL }}
