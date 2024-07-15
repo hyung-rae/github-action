@@ -25,5 +25,6 @@ jobs:
     uses: ./.github/workflows/slack.yml
     with:
       status: ${{ needs.e2e-test.outputs.test_result }}
+      title: "E2E test"
     secrets:
       web_hook_url: ${{ secrets.SLACK_WEBHOOK_URL }}
