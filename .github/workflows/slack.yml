@@ -1,4 +1,4 @@
-name: Slack-custom
+name: slack
 
 on:
   workflow_call:
