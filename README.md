@@ -9,11 +9,7 @@
 ![스크린샷 2024-07-11 오후 3 43 48](https://github.com/hyung-rae/github-action/assets/174302871/aec241ac-6190-4d84-93fa-c88ff0fcd05a)
 
 
-### Slack message Custom
-
-<img width="573" alt="스크린샷 2024-07-12 오전 11 27 43" src="https://github.com/user-attachments/assets/cac6c5de-0291-40bd-bb5a-f99c68eb9846">
-
-#### actions.yml
+### Slack message Custom (slack.yml)
 ```YAML
 jobs:
   slack-message:
