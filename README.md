@@ -10,38 +10,59 @@
 
 
 ### Slack message Custom (slack.yml)
+- [slack api workflow](https://github.com/8398a7/action-slack) 
 ```YAML
+name: slack
+
+on:
+  workflow_call:
+    # alert 상태와 메시지를 Input으로 받음
+    inputs:
+      status:
+        required: true
+        type: string
+      title:
+        required: true
+        type: string
+
+    secrets:
+      web_hook_url:
+        required: true
+
 jobs:
   slack-message:
     runs-on: ubuntu-latest
     steps:
       - name: success-message
+        if: ${{ inputs.status == 'success' }}
         uses: 8398a7/action-slack@v3
         with:
           status: success
-          author_name: 큐샵 어드민 E2E 테스트
-          text: 🎉 E2E test 성공
+          author_name: '${{ inputs.title }}'
+          text: '🎉 ${{ inputs.title }} 성공'
           fields: repo,message,author,ref
         env:
-          SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
+          SLACK_WEBHOOK_URL: ${{ secrets.web_hook_url }}
 
       - name: failure-message
+        if: ${{ inputs.status == 'failure' }}
         uses: 8398a7/action-slack@v3
         with:
           status: failure
-          author_name: 큐샵 어드민 E2E 테스트
-          text: ❌ E2E test 실패
+          author_name: '${{ inputs.title }}'
+          text: '❌ ${{ inputs.title }} 실패'
           fields: repo,message,author,ref
         env:
-          SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}        
-          
+          SLACK_WEBHOOK_URL: ${{ secrets.web_hook_url }}
+
       - name: cancelled-message
+        if: ${{ inputs.status == 'cancelled' }}
         uses: 8398a7/action-slack@v3
         with:
           status: cancelled
-          author_name: 큐샵 어드민 E2E 테스트
-          text: 😳 E2E test 취소
+          author_name: '${{ inputs.title }}'
+          text: '😳 ${{ inputs.title }} 취소'
           fields: repo,message,author,ref
         env:
-          SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}       
+          SLACK_WEBHOOK_URL: ${{ secrets.web_hook_url }}  
 ```
